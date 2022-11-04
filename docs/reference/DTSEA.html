@@ -34,7 +34,13 @@ genes."><!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/math
       </ul><form class="form-inline my-2 my-lg-0" role="search">
         <input type="search" class="form-control me-sm-2" aria-label="Toggle navigation" name="search-input" data-search-index="../search.json" id="search-input" placeholder="Search for" autocomplete="off"></form>
 
-      <ul class="navbar-nav"></ul></div>
+      <ul class="navbar-nav"><li class="nav-item">
+  <a class="external-link nav-link" href="https://github.com/hanjunwei-lab/DTSEA/" aria-label="github">
+    <span class="fab fa fab fa-github fa-lg"></span>
+     
+  </a>
+</li>
+      </ul></div>
 
     
   </div>
@@ -42,7 +48,7 @@ genes."><!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/math
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="" class="logo" alt=""><h1>Main function of drug target set enrichment analysis (DTSEA)</h1>
-      
+      <small class="dont-index">Source: <a href="https://github.com/hanjunwei-lab/DTSEA/blob/HEAD/R/DTSEA.R" class="external-link"><code>R/DTSEA.R</code></a></small>
       <div class="d-none name"><code>DTSEA.Rd</code></div>
     </div>
 
@@ -137,7 +143,7 @@ to the power of 'gseaParam' before calculating of GSEA enrichment scores.</p></d
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">DTSEA</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/hanjunwei-lab/DTSEA" class="external-link">DTSEA</a></span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Load the data</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"example_disease_list"</span>, package <span class="op">=</span> <span class="st">"DTSEA"</span><span class="op">)</span></span></span>
@@ -173,7 +179,7 @@ to the power of 'gseaParam' before calculating of GSEA enrichment scores.</p></d
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 1 × 8</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   drug_id    pval   padj log2err    ES   NES  size leadingEdge</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> DB00112 0.005<span style="text-decoration: underline;">05</span> 0.032<span style="text-decoration: underline;">0</span>   0.407 0.729  1.82     9 <span style="color: #949494;">&lt;chr [4]&gt;</span>  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> DB00112 0.004<span style="text-decoration: underline;">90</span> 0.031<span style="text-decoration: underline;">0</span>   0.407 0.729  1.83     9 <span style="color: #949494;">&lt;chr [4]&gt;</span>  </span>
 <span class="r-in"><span><span class="co"># Or we can draw the enrichment plot of the first predicted drug.</span></span></span>
 <span class="r-in"><span><span class="fu">fgsea</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/fgsea/man/plotEnrichment.html" class="external-link">plotEnrichment</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>  pathway <span class="op">=</span> <span class="va">example_drug_target_list</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span></span>

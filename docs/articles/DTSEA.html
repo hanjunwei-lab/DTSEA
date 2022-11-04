@@ -49,7 +49,14 @@
         <input type="search" class="form-control me-sm-2" aria-label="Toggle navigation" name="search-input" data-search-index="../search.json" id="search-input" placeholder="Search for" autocomplete="off">
 </form>
 
-      <ul class="navbar-nav"></ul>
+      <ul class="navbar-nav">
+<li class="nav-item">
+  <a class="external-link nav-link" href="https://github.com/hanjunwei-lab/DTSEA/" aria-label="github">
+    <span class="fab fa fab fa-github fa-lg"></span>
+     
+  </a>
+</li>
+      </ul>
 </div>
 
     
@@ -66,7 +73,7 @@
 Junwei Han</h4>
             
       
-      
+      <small class="dont-index">Source: <a href="https://github.com/hanjunwei-lab/DTSEA/blob/HEAD/vignettes/DTSEA.Rmd" class="external-link"><code>vignettes/DTSEA.Rmd</code></a></small>
       <div class="d-none name"><code>DTSEA.Rmd</code></div>
     </div>
 
@@ -83,14 +90,12 @@ Junwei Han</h4>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt;     intersect, setdiff, setequal, union</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://magrittr.tidyverse.org" class="external-link">magrittr</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">DTSEA</span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/hanjunwei-lab/DTSEA" class="external-link">DTSEA</a></span><span class="op">)</span></span>
 <span><span class="co">#&gt; This package SHOULD NOT BE USED UNDER INTEL MATH KERNEL LIBRARY ON ANY OCCASION.</span></span>
 <span><span class="co">#&gt; There is an avoidable but critical bug with Intel Math Kernel Library (MKL) on various operating systems.</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; ======================================</span></span>
-<span><span class="co">#&gt; For better performance, we recommend not using RStudio on Windows because RStudio cannot take advantage of the multi-core capabilities available on modern computers.</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Loading optinal package: DTSEAdata</span></span></code></pre></div>
+<span><span class="co">#&gt; For better performance, we recommend not using RStudio on Windows because RStudio cannot take advantage of the multi-core capabilities available on modern computers.</span></span></code></pre></div>
 <div class="section level3">
 <h3 id="introduction">Introduction<a class="anchor" aria-label="anchor" href="#introduction"></a>
 </h3>
@@ -172,12 +177,12 @@ GSEA enrichment scores.</li>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 6 × 8</span></span></span>
 <span><span class="co">#&gt;   drug_id    pval   padj log2err    ES   NES  size leadingEdge</span></span>
 <span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>     </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> DB00112 0.004<span style="text-decoration: underline;">22</span> 0.026<span style="text-decoration: underline;">7</span>  0.407  0.729  1.82     9 <span style="color: #949494;">&lt;chr [4]&gt;</span>  </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> DB11952 0.055<span style="text-decoration: underline;">8</span>  0.212   0.122  0.890  1.40     2 <span style="color: #949494;">&lt;chr [2]&gt;</span>  </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> DB09079 0.118   0.280   0.084<span style="text-decoration: underline;">2</span> 0.509  1.39    12 <span style="color: #949494;">&lt;chr [10]&gt;</span> </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span> DB05017 0.084<span style="text-decoration: underline;">5</span>  0.268   0.098<span style="text-decoration: underline;">5</span> 0.866  1.36     2 <span style="color: #949494;">&lt;chr [2]&gt;</span>  </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">5</span> DB11526 0.178   0.351   0.067<span style="text-decoration: underline;">5</span> 0.681  1.31     4 <span style="color: #949494;">&lt;chr [4]&gt;</span>  </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">6</span> DB01611 0.214   0.351   0.060<span style="text-decoration: underline;">3</span> 0.719  1.26     3 <span style="color: #949494;">&lt;chr [3]&gt;</span></span></span></code></pre></div>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> DB00112 0.004<span style="text-decoration: underline;">89</span> 0.030<span style="text-decoration: underline;">9</span>  0.407  0.729  1.84     9 <span style="color: #949494;">&lt;chr [4]&gt;</span>  </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> DB09079 0.096<span style="text-decoration: underline;">9</span>  0.266   0.092<span style="text-decoration: underline;">8</span> 0.509  1.40    12 <span style="color: #949494;">&lt;chr [10]&gt;</span> </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> DB11952 0.067<span style="text-decoration: underline;">1</span>  0.255   0.111  0.890  1.38     2 <span style="color: #949494;">&lt;chr [2]&gt;</span>  </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span> DB05017 0.100   0.266   0.090<span style="text-decoration: underline;">4</span> 0.866  1.35     2 <span style="color: #949494;">&lt;chr [2]&gt;</span>  </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">5</span> DB11526 0.161   0.339   0.070<span style="text-decoration: underline;">1</span> 0.681  1.31     4 <span style="color: #949494;">&lt;chr [4]&gt;</span>  </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">6</span> DB01611 0.203   0.350   0.062<span style="text-decoration: underline;">1</span> 0.719  1.26     3 <span style="color: #949494;">&lt;chr [3]&gt;</span></span></span></code></pre></div>
 <p>You can arrange the positive results by NES</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">result</span>, <span class="op">-</span><span class="va">leadingEdge</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
@@ -186,7 +191,7 @@ GSEA enrichment scores.</li>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 1 × 7</span></span></span>
 <span><span class="co">#&gt;   drug_id    pval   padj log2err    ES   NES  size</span></span>
 <span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> DB00112 0.004<span style="text-decoration: underline;">22</span> 0.026<span style="text-decoration: underline;">7</span>   0.407 0.729  1.82     9</span></span></code></pre></div>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> DB00112 0.004<span style="text-decoration: underline;">89</span> 0.030<span style="text-decoration: underline;">9</span>   0.407 0.729  1.84     9</span></span></code></pre></div>
 <p>Or we can draw the enrichment plot of the first predicted drug using
 <code>fgsea</code> package.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
@@ -253,11 +258,11 @@ to describe the consistency.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Just report the results</span></span>
 <span><span class="fu"><a href="../reference/kendall.w.html">kendall.w</a></span><span class="op">(</span><span class="va">data</span><span class="op">)</span><span class="op">$</span><span class="va">report</span></span>
-<span><span class="co">#&gt; [1] "Kendall's coefficient W = 0.591, p = 0.224"</span></span>
+<span><span class="co">#&gt; [1] "Kendall's coefficient W = 0.752, p = 0.0897"</span></span>
 <span></span>
 <span><span class="co"># Or just report the alpha</span></span>
 <span><span class="fu"><a href="../reference/cronbach.alpha.html">cronbach.alpha</a></span><span class="op">(</span><span class="va">data</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] 0.4090538</span></span></code></pre></div>
+<span><span class="co">#&gt; [1] 0.7232358</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="multicore-capability">Multicore capability<a class="anchor" aria-label="anchor" href="#multicore-capability"></a>
