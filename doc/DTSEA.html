@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<meta name="author" content="Yinchun Su, Junwei Han" />
+
+
+<title>DTSEA User Guide</title>
+
+<script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
+// be compatible with the behavior of Pandoc < 2.8).
+document.addEventListener('DOMContentLoaded', function(e) {
+  var hs = document.querySelectorAll("div.section[class*='level'] > :first-child");
+  var i, h, a;
+  for (i = 0; i < hs.length; i++) {
+    h = hs[i];
+    if (!/^h[1-6]$/i.test(h.tagName)) continue;  // it should be a header h1-h6
+    a = h.attributes;
+    while (a.length > 0) h.removeAttribute(a[0].name);
+  }
+});
+</script>
+
+<style type="text/css">
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+</style>
+
+
+
+<style type="text/css">
+code {
+white-space: pre;
+}
+.sourceCode {
+overflow: visible;
+}
+</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+{ counter-reset: source-line 0; }
+pre.numberSource code > span
+{ position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+{ content: counter(source-line);
+position: relative; left: -1em; text-align: right; vertical-align: baseline;
+border: none; display: inline-block;
+-webkit-touch-callout: none; -webkit-user-select: none;
+-khtml-user-select: none; -moz-user-select: none;
+-ms-user-select: none; user-select: none;
+padding: 0 4px; width: 4em;
+color: #aaaaaa;
+}
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa; padding-left: 4px; }
+div.sourceCode
+{ }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } 
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.at { color: #7d9029; } 
+code span.bn { color: #40a070; } 
+code span.bu { color: #008000; } 
+code span.cf { color: #007020; font-weight: bold; } 
+code span.ch { color: #4070a0; } 
+code span.cn { color: #880000; } 
+code span.co { color: #60a0b0; font-style: italic; } 
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.do { color: #ba2121; font-style: italic; } 
+code span.dt { color: #902000; } 
+code span.dv { color: #40a070; } 
+code span.er { color: #ff0000; font-weight: bold; } 
+code span.ex { } 
+code span.fl { color: #40a070; } 
+code span.fu { color: #06287e; } 
+code span.im { color: #008000; font-weight: bold; } 
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.kw { color: #007020; font-weight: bold; } 
+code span.op { color: #666666; } 
+code span.ot { color: #007020; } 
+code span.pp { color: #bc7a00; } 
+code span.sc { color: #4070a0; } 
+code span.ss { color: #bb6688; } 
+code span.st { color: #4070a0; } 
+code span.va { color: #19177c; } 
+code span.vs { color: #4070a0; } 
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } 
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    var j = 0;
+    while (j < rules.length) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") {
+        j++;
+        continue;
+      }
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') {
+        j++;
+        continue;
+      }
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+
+
+<style type="text/css">body {
+background-color: #fff;
+margin: 1em auto;
+max-width: 700px;
+overflow: visible;
+padding-left: 2em;
+padding-right: 2em;
+font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+font-size: 14px;
+line-height: 1.35;
+}
+#TOC {
+clear: both;
+margin: 0 0 10px 10px;
+padding: 4px;
+width: 400px;
+border: 1px solid #CCCCCC;
+border-radius: 5px;
+background-color: #f6f6f6;
+font-size: 13px;
+line-height: 1.3;
+}
+#TOC .toctitle {
+font-weight: bold;
+font-size: 15px;
+margin-left: 5px;
+}
+#TOC ul {
+padding-left: 40px;
+margin-left: -1.5em;
+margin-top: 5px;
+margin-bottom: 5px;
+}
+#TOC ul ul {
+margin-left: -2em;
+}
+#TOC li {
+line-height: 16px;
+}
+table {
+margin: 1em auto;
+border-width: 1px;
+border-color: #DDDDDD;
+border-style: outset;
+border-collapse: collapse;
+}
+table th {
+border-width: 2px;
+padding: 5px;
+border-style: inset;
+}
+table td {
+border-width: 1px;
+border-style: inset;
+line-height: 18px;
+padding: 5px 5px;
+}
+table, table th, table td {
+border-left-style: none;
+border-right-style: none;
+}
+table thead, table tr.even {
+background-color: #f7f7f7;
+}
+p {
+margin: 0.5em 0;
+}
+blockquote {
+background-color: #f6f6f6;
+padding: 0.25em 0.75em;
+}
+hr {
+border-style: solid;
+border: none;
+border-top: 1px solid #777;
+margin: 28px 0;
+}
+dl {
+margin-left: 0;
+}
+dl dd {
+margin-bottom: 13px;
+margin-left: 13px;
+}
+dl dt {
+font-weight: bold;
+}
+ul {
+margin-top: 0;
+}
+ul li {
+list-style: circle outside;
+}
+ul ul {
+margin-bottom: 0;
+}
+pre, code {
+background-color: #f7f7f7;
+border-radius: 3px;
+color: #333;
+white-space: pre-wrap; 
+}
+pre {
+border-radius: 3px;
+margin: 5px 0px 10px 0px;
+padding: 10px;
+}
+pre:not([class]) {
+background-color: #f7f7f7;
+}
+code {
+font-family: Consolas, Monaco, 'Courier New', monospace;
+font-size: 85%;
+}
+p > code, li > code {
+padding: 2px 0px;
+}
+div.figure {
+text-align: center;
+}
+img {
+background-color: #FFFFFF;
+padding: 2px;
+border: 1px solid #DDDDDD;
+border-radius: 3px;
+border: 1px solid #CCCCCC;
+margin: 0 5px;
+}
+h1 {
+margin-top: 0;
+font-size: 35px;
+line-height: 40px;
+}
+h2 {
+border-bottom: 4px solid #f7f7f7;
+padding-top: 10px;
+padding-bottom: 2px;
+font-size: 145%;
+}
+h3 {
+border-bottom: 2px solid #f7f7f7;
+padding-top: 10px;
+font-size: 120%;
+}
+h4 {
+border-bottom: 1px solid #f7f7f7;
+margin-left: 8px;
+font-size: 105%;
+}
+h5, h6 {
+border-bottom: 1px solid #ccc;
+font-size: 105%;
+}
+a {
+color: #0033dd;
+text-decoration: none;
+}
+a:hover {
+color: #6666ff; }
+a:visited {
+color: #800080; }
+a:visited:hover {
+color: #BB00BB; }
+a[href^="http:"] {
+text-decoration: underline; }
+a[href^="https:"] {
+text-decoration: underline; }
+
+code > span.kw { color: #555; font-weight: bold; } 
+code > span.dt { color: #902000; } 
+code > span.dv { color: #40a070; } 
+code > span.bn { color: #d14; } 
+code > span.fl { color: #d14; } 
+code > span.ch { color: #d14; } 
+code > span.st { color: #d14; } 
+code > span.co { color: #888888; font-style: italic; } 
+code > span.ot { color: #007020; } 
+code > span.al { color: #ff0000; font-weight: bold; } 
+code > span.fu { color: #900; font-weight: bold; } 
+code > span.er { color: #a61717; background-color: #e3d2d2; } 
+</style>
+
+
+
+
+</head>
+
+<body>
+
+
+
+
+<h1 class="title toc-ignore">DTSEA User Guide</h1>
+<h4 class="author">Yinchun Su, Junwei Han</h4>
+
+
+
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Attaching package: &#39;dplyr&#39;</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; The following objects are masked from &#39;package:stats&#39;:</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     filter, lag</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; The following objects are masked from &#39;package:base&#39;:</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     intersect, setdiff, setequal, union</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(magrittr)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(DTSEA)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; This package SHOULD NOT BE USED UNDER INTEL MATH KERNEL LIBRARY ON ANY OCCASION.</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; There is an avoidable but critical bug with Intel Math Kernel Library (MKL) on various operating systems.</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ======================================</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; For better performance, we recommend not using RStudio on Windows because RStudio cannot take advantage of the multi-core capabilities available on modern computers.</span></span></code></pre></div>
+<div id="introduction" class="section level3">
+<h3>Introduction</h3>
+<p>The Drug Target Set Enrichment Analysis (DTSEA) is a novel tool used
+to identify the most effective drug set against a particular disease
+based on the Gene Set Enrichment Analysis (GSEA).</p>
+<p>The central hypothesis of DTSEA is that the targets of potential
+candidates for a specific disease (e.g., COVID-19) ought to be close to
+each other, or at least not so far away from the disease. The DTSEA
+algorithm determines whether a drug is potent for the chosen disease by
+the proximity between drug targets and the disease-related genes. Under
+the central hypothesis of DTSEA, the DTSEA consists of two main
+parts:</p>
+<ol style="list-style-type: decimal">
+<li>Evaluate the influence of the specific disease in the PPI network by
+the random walk with restart algorithm.</li>
+</ol>
+<p>To evaluate the influence, we compute the disease-node distance by
+using the random walk with restart (RwR) algorithm, then rank the nodes
+reversely.</p>
+<ol start="2" style="list-style-type: decimal">
+<li>Evaluate the drug-disease associations based on GSEA.</li>
+</ol>
+<p>The GSEA approach is adopted in this part to identify whether
+candidate drug targets are disease-related (top) or disease-unrelated
+(bottom) on the human PPI list. The specific disease gene list is
+normalized by the median and is set zero as the arbitrary cutoff point
+to classify the relations manually.</p>
+<p>This vignette illustrates how to use the <strong>DTSEA</strong>
+easily. Here, using functions in this package, users could identify
+potential drugs for disease by the DTSEA algorithm.</p>
+</div>
+<div id="example-1-calculate-the-enrichment-scores-of-drugs." class="section level3">
+<h3>Example 1: Calculate the enrichment scores of drugs.</h3>
+<p>The function <code>DTSEA</code> is used to calculate the enrichment
+scores of drugs. The parameters are as follows:</p>
+<ul>
+<li><code>network</code>: The human protein-protein interactome network.
+It should be or be preconverted before being inputted in DTSEA.</li>
+<li><code>disease</code>: The disease-related nodes.</li>
+<li><code>drugs</code>: The drug-target long format dataframe. It
+includes at least columns with the drug_id and drug_target.</li>
+<li><code>rwr.pt</code>: The random walk p0 vector. Set it to zero if
+you wish DTSEA automatically compute it, or you can provide your
+predetermined p0 vector.</li>
+<li><code>eps</code>: The boundary of calculating the p value.</li>
+<li><code>nPermSimple</code>: Number of permutations in the simple fgsea
+implementation for preliminary estimation of p-values.</li>
+<li><code>gseaParam</code>: GSEA parameter value, all gene-level
+statistics are raised to the power of ‘gseaParam’ before calculating
+GSEA enrichment scores.</li>
+<li><code>verbose</code>: Show the messages.</li>
+</ul>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the data</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;example_disease_list&quot;</span>, <span class="at">package =</span> <span class="st">&quot;DTSEA&quot;</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;example_drug_target_list&quot;</span>, <span class="at">package =</span> <span class="st">&quot;DTSEA&quot;</span>)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;example_ppi&quot;</span>, <span class="at">package =</span> <span class="st">&quot;DTSEA&quot;</span>)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Perform a simple DTSEA analysis using default optional parameters then sort</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co"># the result dataframe by normalized enrichment scores (NES)</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>result <span class="ot">&lt;-</span> <span class="fu">DTSEA</span>(<span class="at">network =</span> example_ppi,</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>                <span class="at">disease =</span> example_disease_list,</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>                <span class="at">drugs =</span> example_drug_target_list, <span class="at">verbose =</span> <span class="cn">FALSE</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>) <span class="sc">%&gt;%</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(NES))</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning in preparePathwaysAndStats(pathways, stats, minSize, maxSize, gseaParam, : There are ties in the preranked stats (0.81% of the list).</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; The order of those tied genes will be arbitrary, which may produce unexpected results.</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(result)</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 6 × 8</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   drug_id    pval   padj log2err    ES   NES  size leadingEdge</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;     &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;list&gt;     </span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 DB00112 0.00562 0.0356  0.407  0.729  1.82     9 &lt;chr [4]&gt;  </span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 DB09079 0.103   0.246   0.0902 0.509  1.39    12 &lt;chr [10]&gt; </span></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 DB11952 0.0591  0.225   0.119  0.890  1.39     2 &lt;chr [2]&gt;  </span></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 DB05017 0.0971  0.246   0.0920 0.866  1.35     2 &lt;chr [2]&gt;  </span></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5 DB11526 0.174   0.354   0.0674 0.681  1.31     4 &lt;chr [4]&gt;  </span></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6 DB01611 0.223   0.354   0.0591 0.719  1.25     3 &lt;chr [3]&gt;</span></span></code></pre></div>
+<p>You can arrange the positive results by NES</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(result, <span class="sc">-</span>leadingEdge) <span class="sc">%&gt;%</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(NES)) <span class="sc">%&gt;%</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(NES <span class="sc">&gt;</span> <span class="dv">0</span> <span class="sc">&amp;</span> pval <span class="sc">&lt;</span> .<span class="dv">05</span>) <span class="sc">%&gt;%</span> <span class="fu">head</span>()</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 1 × 7</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   drug_id    pval   padj log2err    ES   NES  size</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;     &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt;</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 DB00112 0.00562 0.0356   0.407 0.729  1.82     9</span></span></code></pre></div>
+<p>Or we can draw the enrichment plot of the first predicted drug using
+<code>fgsea</code> package.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>fgsea<span class="sc">::</span><span class="fu">plotEnrichment</span>(</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">pathway =</span> example_drug_target_list <span class="sc">%&gt;%</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(drug_id <span class="sc">==</span> <span class="fu">slice</span>(result, <span class="dv">1</span>)<span class="sc">$</span>drug_id) <span class="sc">%&gt;%</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">pull</span>(gene_target),</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">stats =</span> <span class="fu">random.walk</span>(<span class="at">network =</span> example_ppi,</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>                      <span class="at">p0 =</span> <span class="fu">calculate_p0</span>(<span class="at">nodes =</span> example_ppi,</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>                                        <span class="at">disease =</span> example_disease_list)</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>                      )</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<p><img src="data:image/png;base64,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" /><!-- --></p>
+</div>
+<div id="example-2.-get-the-influence-of-the-specific-disease-in-the-ppi-network" class="section level3">
+<h3>Example 2. Get the influence of the specific disease in the PPI
+network</h3>
+<p>The function <code>random.walk</code> calculates the <code>pt</code>
+vector. The parameters are as follows:</p>
+<ul>
+<li><code>network</code> The input graph object. It should be either
+igraph object or edge list matrix / data frame.</li>
+<li><code>p0</code> The starting vector on time 0.</li>
+<li><code>edge_weight</code> Logical to indicate whether the input graph
+contains weight information.</li>
+<li><code>gamma</code> The restart probability used for RwR. The
+<code>gamma</code> takes the value from 0 to 1, controlling the
+probability that a node would go back to its starting node.</li>
+<li><code>threshold</code> The threshold used for RwR. The
+<code>threshold</code> indicates the stabilization status, which is a
+stopping criterion of RwR.</li>
+<li><code>pt.post.processing</code> The way to scale the <code>pt</code>
+vector. It can be ‘none’, ‘zscore’, and ‘log’.</li>
+<li><code>pt.align</code> The way to normalize the output
+<code>pt</code> vector. It can be ‘mean’ to manually cut the up- and
+down-regulated genes, ‘median’ to avoid the influence of the
+distribution shape, or ‘none’ for no normalization.</li>
+</ul>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate p0</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>p0 <span class="ot">&lt;-</span> <span class="fu">calculate_p0</span>(<span class="at">nodes =</span> example_ppi, <span class="at">disease =</span> example_disease_list)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Then perform random walk</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="fu">random.walk</span>(<span class="at">network =</span> example_ppi, <span class="at">p0 =</span> p0, <span class="at">verbose =</span> <span class="cn">FALSE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>()</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    MYD88   MAPK14    TRAF1     JAK2      AGT    IRAK2 </span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5.010910 4.994586 4.985955 4.970095 4.964825 4.959323</span></span></code></pre></div>
+</div>
+<div id="example-3.-calculate-the-consistency-of-the-prediction" class="section level3">
+<h3>Example 3. Calculate the consistency of the prediction</h3>
+<p>The function <code>cronbach.alpha</code> and <code>kendall.w</code>
+are used to calculate the prediction consistency.</p>
+<p>If you have several prediction results, you can use either function
+to describe the consistency.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Just report the results</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">kendall.w</span>(data)<span class="sc">$</span>report</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;Kendall&#39;s coefficient W = 0.332, p = 0.675&quot;</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Or just report the alpha</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="fu">cronbach.alpha</span>(data)</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.1839078</span></span></code></pre></div>
+</div>
+<div id="multicore-capability" class="section level3">
+<h3>Multicore capability</h3>
+<p>You can enable the multicore feature to utilize the multicore
+advantages. Here is the benchmark.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># set up environment</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>single.core <span class="ot">&lt;-</span> <span class="cf">function</span>() {</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a> <span class="fu">suppressWarnings</span>(<span class="fu">capture.output</span>(<span class="fu">DTSEA</span>(<span class="at">network =</span> example_ppi, <span class="at">disease =</span> example_disease_list, <span class="at">drugs =</span> example_drug_target_list, <span class="at">nproc =</span> <span class="dv">0</span>)))</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="cn">NULL</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>dual.core <span class="ot">&lt;-</span> <span class="cf">function</span>() {</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a> <span class="fu">suppressWarnings</span>(<span class="fu">capture.output</span>(<span class="fu">DTSEA</span>(<span class="at">network =</span> example_ppi, <span class="at">disease =</span> example_disease_list, <span class="at">drugs =</span> example_drug_target_list, <span class="at">nproc =</span> <span class="dv">10</span>)))</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>  <span class="cn">NULL</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="fu">system.time</span>(<span class="fu">single.core</span>()) <span class="sc">-</span> <span class="fu">system.time</span>(<span class="fu">dual.core</span>())</span></code></pre></div>
+</div>
+<div id="supplementary-data-files" class="section level3">
+<h3>Supplementary data files</h3>
+<p>In this package, we provide the example data, which is a small set of
+data to demonstrate the usage and the main idea behind DTSEA. We provide
+some extra data files, the real data we used in the DTSEA paper. The
+supplementary package is now on the <a href="https://github.com/hanjunwei-lab/DTSEAdata">GitHub</a>. Anyone can
+obtain this package by:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="st">&quot;devtools&quot;</span> <span class="sc">%in%</span> <span class="fu">as.data.frame</span>(<span class="fu">installed.packages</span>())<span class="sc">$</span>Package)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">install.packages</span>(<span class="st">&quot;devtools&quot;</span>)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">&quot;hanjunwei-lab/DTSEAdata&quot;</span>)</span></code></pre></div>
+<p>Here is a list of the supplementary datasets</p>
+<table>
+<colgroup>
+<col width="26%" />
+<col width="73%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Data name</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><code>deletion</code></td>
+<td align="left">Drug prediction results on trimmed graphs after
+enrichment</td>
+</tr>
+<tr class="even">
+<td align="left"><code>drug_indications</code></td>
+<td align="left">The drug indications data from ChEMBL</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>drug_predicted</code></td>
+<td align="left">The drug target data predicted by ChEMBL</td>
+</tr>
+<tr class="even">
+<td align="left"><code>drug_targets</code></td>
+<td align="left">The combined drug target data</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>expr_raw</code></td>
+<td align="left">The raw expression profile of GSE164805</td>
+</tr>
+<tr class="even">
+<td align="left"><code>graph</code></td>
+<td align="left">The human gene functional interaction network we
+used</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>ncbi_list</code></td>
+<td align="left">The COVID-19-related genes provided by NCBI</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="known-bugs" class="section level2">
+<h2>Known bugs</h2>
+<p>The Intel Math Kernel Library (MKL) performs poorly with this package
+when dealing with linear algebra operations. If you use MKL-based BLAS
+or MKL-based R distribution (like <a href="https://mran.microsoft.com/">Microsoft R Open</a>), you will get
+unexpected or zero results in certain circumstances. Please install the
+Automatically Tuned Linear Algebra package (libatlas) or the
+multi-threaded OpenBlas library in order to get higher performance and
+reliable results with:</p>
+<pre><code>sudo apt install libatlas3-base -y</code></pre>
+<p>or</p>
+<pre><code>sudo apt install libopenblas-base -y</code></pre>
+</div>
+
+
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
