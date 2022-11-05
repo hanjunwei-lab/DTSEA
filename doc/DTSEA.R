@@ -63,15 +63,26 @@ kendall.w(data)$report
 cronbach.alpha(data)
 
 ## ---- eval=FALSE--------------------------------------------------------------
+#  # Load the data
+#  data("example_disease_list", package = "DTSEA")
+#  data("example_drug_target_list", package = "DTSEA")
+#  data("example_ppi", package = "DTSEA")
+#  
 #  # set up environment
 #  
 #  single.core <- function() {
-#   suppressWarnings(capture.output(DTSEA(network = example_ppi, disease = example_disease_list, drugs = example_drug_target_list, nproc = 0)))
+#   suppressWarnings(capture.output(DTSEA(network = example_ppi,
+#                                         disease = example_disease_list,
+#                                         drugs = example_drug_target_list,
+#                                         nproc = 0)))
 #    NULL
 #  }
 #  
 #  dual.core <- function() {
-#   suppressWarnings(capture.output(DTSEA(network = example_ppi, disease = example_disease_list, drugs = example_drug_target_list, nproc = 10)))
+#   suppressWarnings(capture.output(DTSEA(network = example_ppi,
+#                                         disease = example_disease_list,
+#                                         drugs = example_drug_target_list,
+#                                         nproc = 10)))
 #    NULL
 #  }
 #  

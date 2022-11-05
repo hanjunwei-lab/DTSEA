@@ -14,7 +14,7 @@
 #' data <- get_data("ncbi_list")
 #'
 get_data <- function(name) {
-  if (!"DTSEAdata" %in% as.data.frame(installed.packages())$Package) {
+  if ("DTSEAdata" %in% as.data.frame(installed.packages())$Package) {
     name <- name[name %in% data(package = "DTSEAdata")$results[, "Item"]] %>%
       setNames(object = ., nm = .)
 

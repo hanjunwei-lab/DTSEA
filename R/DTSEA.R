@@ -119,9 +119,9 @@ DTSEA <- function(network, disease, drugs, rwr.pt = 0, sampleSize = 101,
   # The enrichment analysis aims to determine whether member S (drug genes)
   # are randomly distributed through L (RWR gene set).
   # Usually, S is biological pathways, while L is gene expression data.
-  if (nproc > 0 & str_to_lower(.Platform$OS.type) != 'windows') {
+  if (nproc > 0 && str_to_lower(.Platform$OS.type) != "windows") {
     BPPARAM <- MulticoreParam(workers = nproc)
-  } else if (nproc > 0 & str_to_lower(.Platform$OS.type) == 'windows') {
+  } else if (nproc > 0 && str_to_lower(.Platform$OS.type) == "windows") {
     BPPARAM <- SnowParam(workers = nproc)
   } else {
     BPPARAM <- NULL

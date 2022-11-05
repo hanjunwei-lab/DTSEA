@@ -68,6 +68,7 @@ kendall.w <- function(raw, correct = TRUE) {
     chisq = chisq,
     df = df,
     pval = pval,
-    report = paste0("Kendall's coefficient W = ", round(coeff, 3), ", p = ", signif(pval, 3))
+    report = paste0("Kendall's coefficient W = ", round(coeff, 3),
+                    ", p = ", signif(pval, 3))
   ))
 }

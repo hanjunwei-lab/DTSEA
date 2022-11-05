@@ -428,12 +428,12 @@ GSEA enrichment scores.</li>
 <span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 6 × 8</span></span>
 <span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   drug_id    pval   padj log2err    ES   NES  size leadingEdge</span></span>
 <span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;     &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;list&gt;     </span></span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 DB00112 0.00562 0.0356  0.407  0.729  1.82     9 &lt;chr [4]&gt;  </span></span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 DB09079 0.103   0.246   0.0902 0.509  1.39    12 &lt;chr [10]&gt; </span></span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 DB11952 0.0591  0.225   0.119  0.890  1.39     2 &lt;chr [2]&gt;  </span></span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 DB05017 0.0971  0.246   0.0920 0.866  1.35     2 &lt;chr [2]&gt;  </span></span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5 DB11526 0.174   0.354   0.0674 0.681  1.31     4 &lt;chr [4]&gt;  </span></span>
-<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6 DB01611 0.223   0.354   0.0591 0.719  1.25     3 &lt;chr [3]&gt;</span></span></code></pre></div>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 DB00112 0.00380 0.0241  0.432  0.729  1.85     9 &lt;chr [4]&gt;  </span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 DB09079 0.0971  0.269   0.0941 0.509  1.41    12 &lt;chr [10]&gt; </span></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 DB11952 0.0669  0.254   0.110  0.890  1.39     2 &lt;chr [2]&gt;  </span></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 DB05017 0.0991  0.269   0.0898 0.866  1.35     2 &lt;chr [2]&gt;  </span></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5 DB11526 0.177   0.369   0.0675 0.681  1.31     4 &lt;chr [4]&gt;  </span></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6 DB01611 0.219   0.369   0.0597 0.719  1.26     3 &lt;chr [3]&gt;</span></span></code></pre></div>
 <p>You can arrange the positive results by NES</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(result, <span class="sc">-</span>leadingEdge) <span class="sc">%&gt;%</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(NES)) <span class="sc">%&gt;%</span></span>
@@ -441,7 +441,7 @@ GSEA enrichment scores.</li>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 1 × 7</span></span>
 <span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   drug_id    pval   padj log2err    ES   NES  size</span></span>
 <span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;     &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt;</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 DB00112 0.00562 0.0356   0.407 0.729  1.82     9</span></span></code></pre></div>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 DB00112 0.00380 0.0241   0.432 0.729  1.85     9</span></span></code></pre></div>
 <p>Or we can draw the enrichment plot of the first predicted drug using
 <code>fgsea</code> package.</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>fgsea<span class="sc">::</span><span class="fu">plotEnrichment</span>(</span>
@@ -496,29 +496,40 @@ are used to calculate the prediction consistency.</p>
 to describe the consistency.</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Just report the results</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">kendall.w</span>(data)<span class="sc">$</span>report</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;Kendall&#39;s coefficient W = 0.332, p = 0.675&quot;</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;Kendall&#39;s coefficient W = 0.356, p = 0.624&quot;</span></span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Or just report the alpha</span></span>
 <span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="fu">cronbach.alpha</span>(data)</span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.1839078</span></span></code></pre></div>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.0571783</span></span></code></pre></div>
 </div>
 <div id="multicore-capability" class="section level3">
 <h3>Multicore capability</h3>
 <p>You can enable the multicore feature to utilize the multicore
 advantages. Here is the benchmark.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># set up environment</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>single.core <span class="ot">&lt;-</span> <span class="cf">function</span>() {</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a> <span class="fu">suppressWarnings</span>(<span class="fu">capture.output</span>(<span class="fu">DTSEA</span>(<span class="at">network =</span> example_ppi, <span class="at">disease =</span> example_disease_list, <span class="at">drugs =</span> example_drug_target_list, <span class="at">nproc =</span> <span class="dv">0</span>)))</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="cn">NULL</span></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>}</span>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the data</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;example_disease_list&quot;</span>, <span class="at">package =</span> <span class="st">&quot;DTSEA&quot;</span>)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;example_drug_target_list&quot;</span>, <span class="at">package =</span> <span class="st">&quot;DTSEA&quot;</span>)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;example_ppi&quot;</span>, <span class="at">package =</span> <span class="st">&quot;DTSEA&quot;</span>)</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="co"># set up environment</span></span>
 <span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>dual.core <span class="ot">&lt;-</span> <span class="cf">function</span>() {</span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a> <span class="fu">suppressWarnings</span>(<span class="fu">capture.output</span>(<span class="fu">DTSEA</span>(<span class="at">network =</span> example_ppi, <span class="at">disease =</span> example_disease_list, <span class="at">drugs =</span> example_drug_target_list, <span class="at">nproc =</span> <span class="dv">10</span>)))</span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>  <span class="cn">NULL</span></span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="fu">system.time</span>(<span class="fu">single.core</span>()) <span class="sc">-</span> <span class="fu">system.time</span>(<span class="fu">dual.core</span>())</span></code></pre></div>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>single.core <span class="ot">&lt;-</span> <span class="cf">function</span>() {</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a> <span class="fu">suppressWarnings</span>(<span class="fu">capture.output</span>(<span class="fu">DTSEA</span>(<span class="at">network =</span> example_ppi, </span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>                                       <span class="at">disease =</span> example_disease_list, </span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>                                       <span class="at">drugs =</span> example_drug_target_list, </span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>                                       <span class="at">nproc =</span> <span class="dv">0</span>)))</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>  <span class="cn">NULL</span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>dual.core <span class="ot">&lt;-</span> <span class="cf">function</span>() {</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a> <span class="fu">suppressWarnings</span>(<span class="fu">capture.output</span>(<span class="fu">DTSEA</span>(<span class="at">network =</span> example_ppi, </span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>                                       <span class="at">disease =</span> example_disease_list, </span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>                                       <span class="at">drugs =</span> example_drug_target_list, </span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>                                       <span class="at">nproc =</span> <span class="dv">10</span>)))</span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>  <span class="cn">NULL</span></span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a><span class="fu">system.time</span>(<span class="fu">single.core</span>()) <span class="sc">-</span> <span class="fu">system.time</span>(<span class="fu">dual.core</span>())</span></code></pre></div>
 </div>
 <div id="supplementary-data-files" class="section level3">
 <h3>Supplementary data files</h3>
