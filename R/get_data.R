@@ -11,7 +11,7 @@
 #' @examples
 #' # Do some stuff
 #'
-#' data <- get_data("ncbi_list")
+#' \donttest{data <- get_data("ncbi_list")}
 #'
 get_data <- function(name) {
   if ("DTSEAdata" %in% as.data.frame(installed.packages())$Package) {

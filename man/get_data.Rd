@@ -18,7 +18,7 @@ Get extra data
 \examples{
 # Do some stuff
 
-data <- get_data("ncbi_list")
+\donttest{data <- get_data("ncbi_list")}
 
 }
 \keyword{internal}

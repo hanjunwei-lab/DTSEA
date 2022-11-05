@@ -428,12 +428,12 @@ GSEA enrichment scores.</li>
 <span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 6 × 8</span></span>
 <span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   drug_id    pval   padj log2err    ES   NES  size leadingEdge</span></span>
 <span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;     &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;list&gt;     </span></span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 DB00112 0.00380 0.0241  0.432  0.729  1.85     9 &lt;chr [4]&gt;  </span></span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 DB09079 0.0971  0.269   0.0941 0.509  1.41    12 &lt;chr [10]&gt; </span></span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 DB11952 0.0669  0.254   0.110  0.890  1.39     2 &lt;chr [2]&gt;  </span></span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 DB05017 0.0991  0.269   0.0898 0.866  1.35     2 &lt;chr [2]&gt;  </span></span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5 DB11526 0.177   0.369   0.0675 0.681  1.31     4 &lt;chr [4]&gt;  </span></span>
-<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6 DB01611 0.219   0.369   0.0597 0.719  1.26     3 &lt;chr [3]&gt;</span></span></code></pre></div>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 DB00112 0.00713 0.0451  0.407  0.729  1.83     9 &lt;chr [4]&gt;  </span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 DB09079 0.105   0.258   0.0898 0.509  1.41    12 &lt;chr [10]&gt; </span></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 DB11952 0.0624  0.237   0.117  0.890  1.38     2 &lt;chr [2]&gt;  </span></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 DB05017 0.0893  0.258   0.0968 0.866  1.34     2 &lt;chr [2]&gt;  </span></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5 DB11526 0.165   0.348   0.0696 0.681  1.32     4 &lt;chr [4]&gt;  </span></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6 DB01611 0.205   0.354   0.0617 0.719  1.27     3 &lt;chr [3]&gt;</span></span></code></pre></div>
 <p>You can arrange the positive results by NES</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(result, <span class="sc">-</span>leadingEdge) <span class="sc">%&gt;%</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(NES)) <span class="sc">%&gt;%</span></span>
@@ -441,7 +441,7 @@ GSEA enrichment scores.</li>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 1 × 7</span></span>
 <span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   drug_id    pval   padj log2err    ES   NES  size</span></span>
 <span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;     &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt;</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 DB00112 0.00380 0.0241   0.432 0.729  1.85     9</span></span></code></pre></div>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 DB00112 0.00713 0.0451   0.407 0.729  1.83     9</span></span></code></pre></div>
 <p>Or we can draw the enrichment plot of the first predicted drug using
 <code>fgsea</code> package.</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>fgsea<span class="sc">::</span><span class="fu">plotEnrichment</span>(</span>
@@ -496,11 +496,11 @@ are used to calculate the prediction consistency.</p>
 to describe the consistency.</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Just report the results</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">kendall.w</span>(data)<span class="sc">$</span>report</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;Kendall&#39;s coefficient W = 0.356, p = 0.624&quot;</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;Kendall&#39;s coefficient W = 0.405, p = 0.525&quot;</span></span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Or just report the alpha</span></span>
 <span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="fu">cronbach.alpha</span>(data)</span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.0571783</span></span></code></pre></div>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.1176808</span></span></code></pre></div>
 </div>
 <div id="multicore-capability" class="section level3">
 <h3>Multicore capability</h3>

@@ -53,11 +53,11 @@
 #'
 #' # Or you can utilize the multi-core advantages by enable nproc parameters
 #' # on non-Windows operating systems.
-#' \donttest{result <- DTSEA(
-#'             network = example_ppi,
-#'             disease = example_disease_list,
-#'             drugs = example_drug_target_list,
-#'             nproc = 10, verbose = FALSE
+#' \dontrun{result <- DTSEA(
+#'          network = example_ppi,
+#'          disease = example_disease_list,
+#'          drugs = example_drug_target_list,
+#'          nproc = 10, verbose = FALSE
 #' )}
 #'
 #' # We can extract the significantly NES > 0 drug items.
